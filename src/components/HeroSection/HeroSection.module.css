@@ -1,0 +1,9 @@
+.hero_section {
+    display: flex;
+    height: 270px;
+    width: 100vw;
+    background-color: var(--color-black);
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
