@@ -1,0 +1,43 @@
+.section_body {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-black);
+    padding: 24px 32px 20px 32px;
+    box-sizing: border-box;
+}
+
+.heading_button_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.heading {
+    font-family: poppins;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    color: var(--color-white);
+    letter-spacing: 1px;
+}
+
+.button {
+    font-family: poppins;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    color: var(--color-primary);
+    letter-spacing: 1px;
+    background-color: var(--color-black);
+    border: none;
+}
+
+.card_grid {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 24px;
+    column-gap: 40px;
+    box-sizing: border-box;
+}
