@@ -9,8 +9,11 @@ const AllAlbumSection = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response1 = await axios.get('https://qtify-backend-labs.crio.do/albums/top');
-                setTopAlbumsList(response1.data);
+                const responseTop = await axios.get('https://qtify-backend-labs.crio.do/albums/top');
+                setTopAlbumsList(responseTop.data);
+
+                const responseNew = await axios.get('https://qtify-backend-labs.crio.do/albums/new');
+                setNewAlbumsList(responseNew.data);
             } catch(e) {
 
             }
@@ -25,7 +28,10 @@ const AllAlbumSection = () => {
                 sectionTitle='Top Albums'
                 albumsList={topAlbumsList}
             />
-            {/* <Section /> */}
+            <Section 
+                sectionTitle='New Albums'
+                albumsList={newAlbumsList}
+            />
         </div>
     );
 };
