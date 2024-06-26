@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
+import { Box } from "@mui/material";
 import Section from "../Section/Section";
 import axios from "axios";
+import styles from './AllAlbumSection.module.css';
 
 const AllAlbumSection = () => {
     const [topAlbumsList, setTopAlbumsList] = useState([]);
     const [newAlbumsList, setNewAlbumsList] = useState([]);
+    const [allSongsList, setAllSongsList] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
@@ -14,6 +17,9 @@ const AllAlbumSection = () => {
 
                 const responseNew = await axios.get('https://qtify-backend-labs.crio.do/albums/new');
                 setNewAlbumsList(responseNew.data);
+
+                const responseAllSongs = await axios.get('https://qtify-backend-labs.crio.do/songs');
+                setAllSongsList(responseAllSongs.data);
             } catch(e) {
 
             }
@@ -22,17 +28,25 @@ const AllAlbumSection = () => {
         fetchData();
     }, []);
 
+
     return (
-        <div >
+        <Box className={styles.box}>
             <Section 
                 sectionTitle='Top Albums'
-                albumsList={topAlbumsList}
+                list={topAlbumsList}
             />
             <Section 
                 sectionTitle='New Albums'
-                albumsList={newAlbumsList}
+                list={newAlbumsList}
             />
-        </div>
+            <Box className={styles.songs_section}>
+                <Section 
+                    sectionTitle='Songs'
+                    list={allSongsList}
+                    setAllSongsList={setAllSongsList}
+                />
+            </Box>
+        </Box>
     );
 };
 

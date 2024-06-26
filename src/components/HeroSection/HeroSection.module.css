@@ -6,4 +6,6 @@
     align-items: center;
     justify-content: center;
     gap: 32px;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
 }

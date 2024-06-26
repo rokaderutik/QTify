@@ -32,6 +32,7 @@
     letter-spacing: 1px;
     background-color: var(--color-black);
     border: none;
+    cursor: pointer;
 }
 
 .card_grid {
@@ -41,4 +42,24 @@
     row-gap: 24px;
     column-gap: 40px;
     box-sizing: border-box;
+}
+
+.hr {
+    height: 1px;
+    width: 100%;
+    background-color: var(--color-primary);
+    margin: 0px;
+    border: none;
+}
+
+.tabs_container {
+    padding-bottom: 23px;
+}
+
+.tab_button {
+    font-family: poppins !important;
+    color: var(--color-white) !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    line-height: 24px !important;
 }
