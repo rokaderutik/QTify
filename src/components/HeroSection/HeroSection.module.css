@@ -1,7 +1,7 @@
 .hero_section {
     display: flex;
     height: 270px;
-    width: 100vw;
+    width: 100%;
     background-color: var(--color-black);
     align-items: center;
     justify-content: center;
