@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -21,8 +21,9 @@ import CarouselRightNavigation from '../Carousel/CarouselRightNavigation';
  * all songs list
  * @returns 
  */
-const TabsContainer = ({ setAllSongsList }) => {
+const TabsContainer = ({ setAllSongsList, list }) => {
     const [value, setValue] = useState(0);
+    const allSongsList = useRef(list);
 
     const [genre, setGenre] = useState({
         "key": "all",
@@ -182,7 +183,7 @@ const CardGrid = ({ list }) => {
  * @param {List<Object>} list 
  * list of albums or songs
  * @param {Function} setAllSongsList
- * set list of songs
+ * set list of songs for songs
  * @returns {} none
  */
 
@@ -201,7 +202,7 @@ const Section = ({ sectionTitle, list, setAllSongsList }) => {
                             &&
                         <button 
                             className={styles.button}
-                            onClick={() => setIsButtonCollapse((curr) => !curr) }
+                            onClick={() => setIsButtonCollapse((prev) => !prev) }
                         >
                             {!isButtonCollapse ? 'Collapse' : 'Show all'}
                         </button>
