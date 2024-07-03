@@ -62,7 +62,7 @@ const SongsList = ({ list }) => {
                     <h3>Duration</h3>
                 </Box>
                 {
-                    currentList.map((song) => {
+                    currentList.map((song, index) => {
                         return (
                             <Box key={song.id}>
                                 <SongDetail
@@ -71,7 +71,7 @@ const SongsList = ({ list }) => {
                                     image={song.image}
                                     durationInMs={song.durationInMs}
                                 />
-                                <hr />
+                                { index !== 7 ? <hr /> : <hr style={{marginBottom: '0px'}} />}
                             </Box>
                         )
                     })

@@ -12,7 +12,7 @@ const Card = ({ image, follows, title, slug, isAlbum, noOfSongs }) => {
         if(isAlbum) {
             navigate('/album', {state: {slug: slug}});
         } else {
-
+            
         }
     }
 

@@ -8,6 +8,7 @@ import './App.css';
 import Home from "./pages/Home";
 import Album from "./pages/Album";
 import Navbar from './components/Navbar/Navbar';
+import MusicPlayer from './components/MusicPlayer/MusicPlayer';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/album" element={<Album />} />
         </Routes>
+        <MusicPlayer />
       </div>
     </BrowserRouter>
   );
