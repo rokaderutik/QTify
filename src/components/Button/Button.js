@@ -1,8 +1,18 @@
 import styles from './Button.module.css';
 
-const Button = ({ text }) => {
+/**
+ * 
+ * @param {string} text
+ * button text
+ * @param {function} handleOpen
+ * open feedback modal form
+ */
+const Button = ({ text, handleOpen }) => {
     return (
-        <button className={styles.button}>
+        <button 
+            className={styles.button}
+            onClick={() => handleOpen()}
+        >
             {text}
         </button>
     );

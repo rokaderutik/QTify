@@ -6,7 +6,7 @@ import styles from './Section.module.css';
 import Card from '../Card/Card';
 import axios from 'axios';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+// import { Navigation } from 'swiper/modules';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -117,9 +117,11 @@ const Controls = ({ list }) => {
  * 
  * @param {List<object>} list
  * list of albums or songs 
+ * @param {boolean} isAlbum
+ * is album or song list
  * @returns 
  */
-const Carousel = ({ list }) => {
+const Carousel = ({ list, isAlbum }) => {
     
     return (
         <Box>
@@ -141,6 +143,8 @@ const Carousel = ({ list }) => {
                                     image={item.image}
                                     title={item.title}
                                     follows={ item.follows ? `${item.follows} Follows` : `${item.likes} Likes`}
+                                    slug={item.slug}
+                                    isAlbum={isAlbum}
                                 />
                             </SwiperSlide>
                         )
@@ -155,9 +159,11 @@ const Carousel = ({ list }) => {
  * 
  * @param {List<object>} list
  * list of albums or songs 
+ * @param {boolean} isAlbum
+ * is album or song list
  * @returns 
  */
-const CardGrid = ({ list }) => {
+const CardGrid = ({ list, isAlbum }) => {
     return (
         <Box className={styles.card_grid}>
             {
@@ -168,6 +174,8 @@ const CardGrid = ({ list }) => {
                             image={item.image}
                             title={item.title}
                             follows={ item.follows ? `${item.follows} Follows` : `${item.likes} Likes`}
+                            slug={item.slug}
+                            isAlbum={isAlbum}
                         />
                     )
                 })
@@ -216,9 +224,9 @@ const Section = ({ sectionTitle, list, setAllSongsList }) => {
                 {
                     isButtonCollapse
                      ? (
-                        <Carousel list={list} />
+                        <Carousel list={list} isAlbum={sectionTitle !== 'Songs'? true : false} />
                     ) : (
-                        <CardGrid list={list} />
+                        <CardGrid list={list} isAlbum={sectionTitle !== 'Songs'? true : false} />
                     )
                 }
             </Box>

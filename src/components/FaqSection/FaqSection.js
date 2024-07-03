@@ -9,7 +9,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const FaqSection = () => {
     const [faqList, setFaqList] = useState([]);
-    console.log(faqList)
+    // console.log(faqList)
     useEffect(() => {
         async function fetchData() {
             try {

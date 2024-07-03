@@ -1,18 +1,25 @@
 import React from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import './App.css';
+import Home from "./pages/Home";
+import Album from "./pages/Album";
 import Navbar from './components/Navbar/Navbar';
-import HeroSection from "./components/HeroSection/HeroSection";
-import AllAlbumSection from "./components/AllAlbumSections/AllAlbumSections";
-import FaqSection from "./components/FaqSection/FaqSection";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <HeroSection />
-      <AllAlbumSection />
-      <FaqSection />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/album" element={<Album />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
