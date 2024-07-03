@@ -8,6 +8,7 @@ const AllAlbumSection = () => {
     const [topAlbumsList, setTopAlbumsList] = useState([]);
     const [newAlbumsList, setNewAlbumsList] = useState([]);
     const [allSongsList, setAllSongsList] = useState([]);
+    const [currGenresSongsList, setCurrGenresSongsList] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
@@ -20,6 +21,7 @@ const AllAlbumSection = () => {
 
                 const responseAllSongs = await axios.get('https://qtify-backend-labs.crio.do/songs');
                 setAllSongsList(responseAllSongs.data);
+                setCurrGenresSongsList(responseAllSongs.data);
             } catch(e) {
 
             }
@@ -43,7 +45,8 @@ const AllAlbumSection = () => {
                 <Section 
                     sectionTitle='Songs'
                     list={allSongsList}
-                    setAllSongsList={setAllSongsList}
+                    currGenresSongsList={currGenresSongsList}
+                    setCurrGenresSongsList={setCurrGenresSongsList}
                 />
             </Box>
         </Box>

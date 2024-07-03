@@ -15,20 +15,20 @@ import CarouselLeftNavigation from '../Carousel/CarouselLeftNavigation';
 import CarouselRightNavigation from '../Carousel/CarouselRightNavigation';
 
 /**
- * @param {function} setAllSongsList
+ * @param {function} setCurrGenresSongsList
  * sets data to songs list
  * @param {list} list
  * all songs list
  * @returns 
  */
-const TabsContainer = ({ setAllSongsList, list }) => {
+const TabsContainer = ({ setCurrGenresSongsList, list }) => {
     const [value, setValue] = useState(0);
-    const allSongsList = useRef(list);
+    // const allSongsList = useRef(list);
 
-    const [genre, setGenre] = useState({
-        "key": "all",
-        "label": "All"
-    });
+    // const [genre, setGenre] = useState({
+    //     "key": "all",
+    //     "label": "All"
+    // });
     const genreListInitial = [{
         "key": "all",
         "label": "All"
@@ -61,12 +61,19 @@ const TabsContainer = ({ setAllSongsList, list }) => {
     //     fetchData();
     // }, [genre]);
 
-    const handleGenreChange = (list) => {
-
+    const handleGenreChange = (value) => {
+        const currGenre = genresList[value].key;
+        if(currGenre === 'all') {
+            setCurrGenresSongsList(list);
+        } else {
+            const currGenresSongsList = list.filter((song) => song.genre.key === currGenre);
+            setCurrGenresSongsList(currGenresSongsList);
+        }
     };
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+        handleGenreChange(newValue);
     };
 
     function a11yProps(index) {
@@ -145,6 +152,7 @@ const Carousel = ({ list, isAlbum }) => {
                                     follows={ item.follows ? `${item.follows} Follows` : `${item.likes} Likes`}
                                     slug={item.slug}
                                     isAlbum={isAlbum}
+                                    noOfSongs={item.songs ? item.songs.length : 0}
                                 />
                             </SwiperSlide>
                         )
@@ -176,6 +184,7 @@ const CardGrid = ({ list, isAlbum }) => {
                             follows={ item.follows ? `${item.follows} Follows` : `${item.likes} Likes`}
                             slug={item.slug}
                             isAlbum={isAlbum}
+                            noOfSongs={item.songs ? item.songs.length : 0}
                         />
                     )
                 })
@@ -189,13 +198,15 @@ const CardGrid = ({ list, isAlbum }) => {
  * @param {string} sectionTitle
  * title of section Top, New or Songs
  * @param {List<Object>} list 
- * list of albums or songs
- * @param {Function} setAllSongsList
+ * list of albums or songs, for songs its always all songs list
+ * @param {List<Object>} currGenresSongsList
+ * list of songs of currently selected genre
+ * @param {Function} setCurrGenresSongsList
  * set list of songs for songs
  * @returns {} none
  */
 
-const Section = ({ sectionTitle, list, setAllSongsList }) => {
+const Section = ({ sectionTitle, list, setCurrGenresSongsList, currGenresSongsList }) => {
     const [isButtonCollapse, setIsButtonCollapse] = useState(true);
 
     return (
@@ -219,14 +230,20 @@ const Section = ({ sectionTitle, list, setAllSongsList }) => {
                 {
                     (sectionTitle === 'Songs') 
                         &&
-                    <TabsContainer setAllSongsList={setAllSongsList} list={list} />
+                    <TabsContainer setCurrGenresSongsList={setCurrGenresSongsList} list={list} />
                 }
                 {
                     isButtonCollapse
                      ? (
-                        <Carousel list={list} isAlbum={sectionTitle !== 'Songs'? true : false} />
+                        <Carousel 
+                            list={sectionTitle !== 'Songs'? list : currGenresSongsList} 
+                            isAlbum={sectionTitle !== 'Songs'? true : false} 
+                        />
                     ) : (
-                        <CardGrid list={list} isAlbum={sectionTitle !== 'Songs'? true : false} />
+                        <CardGrid 
+                            list={list} 
+                            isAlbum={sectionTitle !== 'Songs'? true : false} 
+                        />
                     )
                 }
             </Box>
