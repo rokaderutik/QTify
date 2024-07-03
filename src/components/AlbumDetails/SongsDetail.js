@@ -33,7 +33,7 @@ const PaginationComp = ({ list, setCurrentList }) => {
         <Box className={styles.pagination_outer}>
             <Pagination
                 className={styles.pagination}
-                count={Math.floor(list.length/8)}
+                count={Math.ceil(list.length/8)}
                 page={page} 
                 onChange={handleChange}
             />
